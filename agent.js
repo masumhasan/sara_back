@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { getWeather, searchWeb, getCurrentTime } from './tools.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,6 +52,7 @@ export default defineAgent({
       stt: streamingStt,
       llm: model,
       tts,
+      tools: [getWeather, searchWeb, getCurrentTime],
     });
 
     const session = new AgentSession({
